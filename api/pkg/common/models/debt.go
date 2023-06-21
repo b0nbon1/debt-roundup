@@ -6,6 +6,9 @@ type Debt struct {
     gorm.Model
     Title       string `json:"title"`
     Description string `json:"description"`
-    Lender      string `json:"lender"`
+    Loaner      int `json:"loaner"`
+    Loanee      int `json:"loanee"`
+    Amount      float64 `json:"amount"`
+    Active      bool `json:"active"`
 }
 

@@ -1,4 +1,4 @@
-package debts
+package users
 
 import (
     "net/http"
@@ -6,17 +6,17 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-func (h handler) DeleteDebt(ctx *gin.Context) {
+func (h handler) DeleteUser(ctx *gin.Context) {
     id := ctx.Param("id")
 
-    var debt models.Debt
+    var user models.User
 
-    if result := h.DB.First(&debt, id); result.Error != nil {
+    if result := h.DB.First(&user, id); result.Error != nil {
         ctx.AbortWithError(http.StatusNotFound, result.Error)
         return
     }
 
-    h.DB.Delete(&debt)
+    h.DB.Delete(&user)
 
     ctx.Status(http.StatusNoContent)
 }

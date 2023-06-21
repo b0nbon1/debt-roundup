@@ -5,6 +5,7 @@ import (
 
 	"github.com/b0nbon1/debt-roundup/pkg/common/db"
 	"github.com/b0nbon1/debt-roundup/pkg/debts"
+	"github.com/b0nbon1/debt-roundup/pkg/users"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -23,6 +24,7 @@ func main() {
     dbHandler := db.Init(dbUrl)
 
     debts.RegisterRoutes(router, dbHandler)
+    users.RegisterRoutes(router, dbHandler)
 
     router.GET("/", func(ctx *gin.Context) {
     ctx.JSON(200, gin.H{

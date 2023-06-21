@@ -9,8 +9,10 @@ import (
 
 type UpdateDebtRequestBody struct {
     Title       string `json:"title"`
-    Lender      string `json:"lender"`
+    Loaner      int `json:"loaner"`
     Description string `json:"description"`
+    Loanee      int `json:"loanee"`
+    Amount      float64 `json:"amount"`
 }
 
 func (h handler) UpdateDebt(ctx *gin.Context) {
@@ -30,8 +32,10 @@ func (h handler) UpdateDebt(ctx *gin.Context) {
     }
 
     debt.Title = body.Title
-    debt.Lender = body.Lender
+    debt.Loaner = body.Loaner
+    debt.Loanee = body.Loanee
     debt.Description = body.Description
+    debt.Amount = body.Amount
 
     h.DB.Save(&debt)
 
